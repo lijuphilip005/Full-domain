@@ -1,0 +1,50 @@
+1//group skip,limit,sort
+// domain> db.students.aggregate([{$group:{_id:{place:'$place',name:"$name"}}},{$skip:2},{$limit:2},{$sort:{_id:1}}])
+// [
+//   { _id: { place: 'banglore', name: 'pankaj' } },
+//   { _id: { place: 'kochi', name: 'arun' } }
+
+
+/** second largest score using find
+ 2* 
+ * domain> db.students.find().sort({score:-1}).skip(1).limit(1)
+[
+  {
+    _id: ObjectId("656014543e43904ab265956f"),
+    name: 'sanju',
+    place: 'kottayam',
+    age: 25,
+    score: 80
+  }
+ */
+
+  /**
+   * 3 find the total score of a field ,like score,marks,etc
+   * 
+   * db.students.aggregate([$group:{_id:0,total:{$sum:"$score"}}])
+         
+   * 
+   */
+
+
+  /** 4 find the medium pizza from the orders collection
+   * //using aggregation
+   * db.orders.aggregate([{$match:{size:"medium"}}])
+   * 
+   * //using find()
+   *  db.orders.find({size:"medium"})
+   */
+
+
+  /** 5  find the count of vegan pizza from the 
+   * db.orders.aggregate([{$group:{_id:{vegan:"$vegan"},count:{$sum:1}}}])
+   * db.orders.find({name:"vegan"}).count()
+   * 
+   * 
+   * 
+   */
+
+  /**
+   * 6 project name and place of students collections
+   * db.students.aggregate([{$project:{name:1,place:1,_id:0}}])
+   */
